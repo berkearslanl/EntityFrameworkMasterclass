@@ -1,0 +1,87 @@
+﻿@model List<Customer>
+@{
+    ViewData["Title"] = "ParallelCustomers";
+    Layout = "~/Views/Layout/Index.cshtml";
+    int count = 0;
+
+    var totalBalance = Model.Sum(x => x.CustomerBalance);
+}
+
+<div class="container mt-4">
+
+    <!-- Başlık -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold">
+            <i class="bi bi-lightning-charge-fill text-warning me-2"></i>
+            Paralel İşlenen Müşteriler
+        </h3>
+        <span class="badge bg-dark text-white">
+            Toplam: @Model.Count
+        </span>
+    </div>
+
+    <!-- Özet Kart -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 rounded-3 text-center p-3">
+                <h6 class="text-muted">Toplam Bakiye</h6>
+                <h4 class="fw-bold text-success">
+                    @totalBalance.ToString("N2") TL
+                </h4>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 rounded-3 text-center p-3">
+                <h6 class="text-muted">Ortalama Bakiye</h6>
+                <h4 class="fw-bold text-primary">
+                    @(Model.Count == 0 ? 0 : (totalBalance / Model.Count).ToString("N2")) TL
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tablo -->
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Müşteri</th>
+                            <th>Şehir</th>
+                            <th>Bakiye</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            count++;
+                            var balanceClass = x.CustomerBalance >= 0 ? "text-success" : "text-danger";
+
+                            <tr>
+                                <td class="fw-bold text-muted">@count</td>
+
+                                <td>
+                                    <i class="bi bi-person-circle text-primary me-2"></i>
+                                    @x.CustomerName @x.CustomerSurname
+                                </td>
+
+                                <td>
+                                    <i class="bi bi-geo-alt-fill text-danger me-1"></i>
+                                    @x.CustomerCity
+                                </td>
+
+                                <td class="fw-semibold @balanceClass">
+                                    @x.CustomerBalance.ToString("N2") TL
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>

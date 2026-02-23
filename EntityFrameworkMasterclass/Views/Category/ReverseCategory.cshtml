@@ -1,0 +1,80 @@
+﻿
+@{
+    ViewData["Title"] = "ReverseCategory";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+<div class="container mt-4">
+
+    <!-- ÜST BAŞLIK + EKLE BUTONU -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="fw-bold">📂 Tersten Kategori Listesi (Reverse)</h3>
+        <a href="/Category/CreateCategory/" class="btn btn-primary shadow-sm">
+            <i class="bi bi-plus-circle me-1"></i> Yeni Kategori
+        </a>
+    </div>
+
+    <!-- KART -->
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body">
+            <h3>@ViewBag.categoryValue</h3>
+            <h3>@ViewBag.categoryValue2</h3>
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Kategori Adı</th>
+                            <th>Durum</th>
+                            <th class="text-center">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold text-muted">#@x.CategoryId</td>
+
+                                <td>
+                                    <i class="bi bi-tag-fill text-primary me-2"></i>
+                                    @x.CategoryName
+                                </td>
+
+                                <td>
+                                    @if (x.CategoryStatus == true)
+                                    {
+                                        <span class="badge bg-success-subtle text-success px-3 py-2">
+                                            <i class="bi bi-check-circle me-1"></i> Aktif
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-warning-subtle text-warning px-3 py-2">
+                                            <i class="bi bi-pause-circle me-1"></i> Pasif
+                                        </span>
+                                    }
+                                </td>
+
+                                <td class="text-center">
+                                    <a href="/Category/UpdateCategory/@x.CategoryId/"
+                                       class="btn btn-sm btn-outline-primary me-2">
+                                        <i class="bi bi-pencil-square"></i>Güncelle
+                                    </a>
+
+                                    <a href="/Category/DeleteCategory/@x.CategoryId/"
+                                       class="btn btn-sm btn-outline-danger"
+                                       onclick="return confirm('Bu kategoriyi silmek istediğinize emin misiniz?');">
+                                        Sil <i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

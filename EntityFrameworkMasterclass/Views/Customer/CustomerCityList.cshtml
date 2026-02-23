@@ -1,0 +1,59 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "CustomerCityList";
+    Layout = "~/Views/Layout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold">
+            <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+            Tekrarsız Şehirler Listesi (Distinct)
+        </h3>
+        <span class="badge bg-dark text-white">
+            Toplam: @Model.Count
+        </span>
+    </div>
+
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body">
+
+            @if (!Model.Any())
+            {
+                <div class="alert alert-warning text-center">
+                    Gösterilecek şehir bulunamadı.
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Şehir Adı</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var x in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <td class="fw-bold text-muted">@count</td>
+
+                                    <td>
+                                        <i class="bi bi-buildings me-2 text-danger"></i>
+                                        @x
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>

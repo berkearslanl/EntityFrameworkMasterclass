@@ -1,0 +1,46 @@
+﻿@model List<Todo>
+@{
+    string? statusCheck = "";
+    string statusClass = "";
+}
+<div class="col-md-7 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">
+                <i class="fas fa-thumbtack"></i>
+                Yapılacaklar Listesi
+            </h4>
+            <div class="add-items d-flex">
+                <input type="text" class="form-control todo-list-input" placeholder="Bugün neye ihtiyacınız var?">
+                <button class="add btn btn-primary font-weight-bold todo-list-add-btn" id="add-task">Ekle</button>
+            </div>
+            <div class="list-wrapper">
+                <ul class="d-flex flex-column-reverse todo-list">
+                    @foreach (var x in Model)
+                    {
+                        @if (x.Status==true)
+                        {
+                            statusCheck = "checked";
+                            statusClass = "completed";
+                        }
+                        else
+                        {
+                            statusCheck = "";
+                            statusClass = "";
+                        }
+
+                        <li class="@statusClass">
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input class="checkbox" type="checkbox"  @statusCheck>
+                                    @x.Description
+                                </label>
+                            </div>
+                            <i class="remove fa fa-times-circle"></i>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

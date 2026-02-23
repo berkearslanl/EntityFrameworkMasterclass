@@ -1,0 +1,72 @@
+﻿@model IEnumerable<dynamic>
+@{
+    ViewData["Title"] = "CustomerListWithIndex";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+<div class="card shadow-sm border-0 rounded-4">
+    <div class="card-body">
+
+        <!-- Başlık ve Özet Alanı -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="fw-bold mb-1">
+                    Index ile Müşteri Listesi
+                </h4>
+                <small class="text-muted">
+                    Index metodu ile müşteri verileri
+                </small>
+            </div>
+
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-warning rounded-3">
+                Listelenecek müşteri bulunamadı.
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Müşteri Adı</th>
+                            <th>Müşteri Soyadı</th>
+                            <th>Müşteri Şehri</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold text-muted">@x.SiraNo</td>
+
+                                <td>
+                                    <i class="bi bi-person-circle text-primary me-2"></i>
+                                    <span class="fw-semibold">
+                                        @x.CustomerName
+                                    </span>
+                                </td>
+                                <td>
+                                    <i class="bi bi-person-circle text-primary me-2"></i>
+                                    <span class="fw-semibold">
+                                        @x.CustomerSurname
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <i class="bi bi-geo-alt-fill text-danger me-1"></i>
+                                    @x.CustomerCity
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>
+

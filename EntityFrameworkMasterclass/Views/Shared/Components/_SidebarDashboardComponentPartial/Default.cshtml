@@ -1,0 +1,305 @@
+﻿<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+    .sub-menu i {
+        width: 18px;
+        font-size: 14px;
+    }
+</style>
+<nav class="sidebar sidebar-offcanvas" id="sidebar">
+    <ul class="nav">
+
+        <!-- Profil -->
+        <li class="nav-item nav-profile">
+            <div class="nav-link">
+                <div class="profile-image">
+                    <img src="/Melody-Premium-Bootstrap-Admin-Dashboard-Template/images/faces/face5.jpg" alt="image" />
+                </div>
+                <div class="profile-name">
+                    <p class="name">Hoşgeldiniz</p>
+                    <p class="designation">Mehmet Berke Arslan</p>
+                </div>
+            </div>
+        </li>
+
+        <!-- DASHBOARD -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#dashboardMenu">
+                <i class="fa-solid fa-gauge menu-icon"></i>
+                <span class="menu-title">Dashboard</span>
+                <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            </a>
+            <div class="collapse" id="dashboardMenu">
+                <ul class="nav flex-column sub-menu">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Dashboard/Index">
+                            <i class="fa-solid fa-chart-line me-2"></i> Genel Bakış
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Dashboard/Statistics">
+                            <i class="fa-solid fa-chart-pie me-2"></i> İstatistikler
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+
+        <!-- KATEGORİLER -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#categoryMenu">
+                <i class="fa-solid fa-layer-group menu-icon"></i>
+                <span class="menu-title">Kategoriler</span>
+                <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            </a>
+
+            <div class="collapse" id="categoryMenu">
+                <ul class="nav flex-column sub-menu">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Category/CategoryList">
+                            <i class="fa-solid fa-list me-2"></i> Tüm Kategoriler
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Category/ReverseCategory">
+                            <i class="fa-solid fa-chart-column me-2"></i> Ters Sıralı Liste
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+
+        <!-- MÜŞTERİLER -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#customerMenu">
+                <i class="fa-solid fa-users menu-icon"></i>
+                <span class="menu-title">Müşteriler</span>
+                <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            </a>
+            <div class="collapse" id="customerMenu">
+                <ul class="nav flex-column sub-menu">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/CustomerListOrderByCustomerName">
+                            <i class="fa-solid fa-arrow-down-a-z me-2"></i> İsme Göre
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/CustomerListByCity">
+                            <i class="fa-solid fa-city me-2"></i> Şehre Göre
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/CustomerByCityCount">
+                            <i class="fa-solid fa-chart-column me-2"></i> Şehir Sayısına Göre
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/CustomerListExceptCityIstanbul">
+                            <i class="fa-solid fa-ban me-2"></i> İstanbul Hariç
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/CustomerCastExample">
+                            <i class="fa-solid fa-code me-2"></i> Cast Kullanımı
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/CustomerCityList">
+                            <i class="fa-solid fa-layer-group me-2"></i> Distinct Şehirler
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/CustomerGetByCity">
+                            <i class="fa-solid fa-magnifying-glass me-2"></i> Şehre Göre Arama
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/CustomerIntersectByCity">
+                            <i class="fa-solid fa-arrows-to-dot me-2"></i> Intersect
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/CustomerListWithIndex">
+                            <i class="fa-solid fa-list-ol me-2"></i> Index Kullanımı
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/ParallelCustomers">
+                            <i class="fa-solid fa-bolt me-2"></i> Parallel
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Customer/CustomersListWithDefaultIfEmpty">
+                            <i class="fa-solid fa-circle-question me-2"></i> DefaultIfEmpty
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+
+        <!-- ÜRÜNLER -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#productMenu">
+                <i class="fa-solid fa-box-open menu-icon"></i>
+                <span class="menu-title">Ürünler</span>
+                <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            </a>
+            <div class="collapse" id="productMenu">
+                <ul class="nav flex-column sub-menu">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Product/ProductList">
+                            <i class="fa-solid fa-boxes-stacked me-2"></i> Tüm Ürünler
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Product/First5ProductList">
+                            <i class="fa-solid fa-list-ol me-2"></i> İlk 5 Ürün
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Product/Skip4ProductList">
+                            <i class="fa-solid fa-forward-step me-2"></i> Skip Örneği
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Product/ProductListWithCategory">
+                            <i class="fa-solid fa-tags me-2"></i> Kategori ile Liste
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Product/CreateProductWithAttach">
+                            <i class="fa-solid fa-plus me-2"></i> Ürün Ekle
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+
+        <!-- SİPARİŞLER -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#orderMenu">
+                <i class="fa-solid fa-cart-shopping menu-icon"></i>
+                <span class="menu-title">Siparişler</span>
+                <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            </a>
+            <div class="collapse" id="orderMenu">
+                <ul class="nav flex-column sub-menu">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Order/OrderListAsyncMethod">
+                            <i class="fa-solid fa-receipt me-2"></i> Tüm Siparişler
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Order/AllCountSmallerThen5">
+                            <i class="fa-solid fa-triangle-exclamation me-2"></i> Stok < 5
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Order/OrderListFilter">
+                            <i class="fa-solid fa-filter me-2"></i> Duruma Göre
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Order/OrderListSearch">
+                            <i class="fa-solid fa-magnifying-glass me-2"></i> Sipariş Arama
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Order/OrderListWithCustomerGroup">
+                            <i class="fa-solid fa-users-gear me-2"></i> Müşteri Siparişleri
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+
+        <!-- MESAJLAR -->
+        <li class="nav-item">
+            <a class="nav-link" href="/Message/MessageList">
+                <i class="fa-solid fa-envelope menu-icon"></i>
+                <span class="menu-title">Mesajlar</span>
+            </a>
+        </li>
+
+        <!-- YAPILACAKLAR -->
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="collapse" href="#todoMenu">
+                <i class="fa-solid fa-list-check menu-icon"></i>
+                <span class="menu-title">Yapılacaklar</span>
+                <i class="fa-solid fa-chevron-down menu-arrow"></i>
+            </a>
+            <div class="collapse" id="todoMenu">
+                <ul class="nav flex-column sub-menu">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Todo/TodoList">
+                            <i class="fa-solid fa-list-check me-2"></i> Liste
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Todo/IncompleteTask">
+                            <i class="fa-solid fa-clock me-2"></i> Gün Başı Kontrol
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Todo/TodoAggreagatePriority">
+                            <i class="fa-solid fa-layer-group me-2"></i> Öncelik Birleştirme
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Todo/TodoChunk">
+                            <i class="fa-solid fa-table-cells me-2"></i> Chunk
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Todo/TodoConcat">
+                            <i class="fa-solid fa-link me-2"></i> Concat
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Todo/TodoUnion">
+                            <i class="fa-solid fa-code-merge me-2"></i> Union
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </li>
+
+    </ul>
+</nav>

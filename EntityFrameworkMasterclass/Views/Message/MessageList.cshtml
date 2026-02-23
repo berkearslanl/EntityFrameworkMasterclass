@@ -1,0 +1,96 @@
+﻿@model List<Message>
+@{
+    ViewData["Title"] = "MessageList";
+    Layout = "~/Views/Layout/Index.cshtml";
+    int count = 0;
+
+    var unreadCount = Model.Count(x => !x.IsRead);
+    var readCount = Model.Count(x => x.IsRead);
+}
+
+<div class="card shadow-sm border-0 rounded-4">
+    <div class="card-body">
+
+        <!-- Başlık + Özet -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="fw-bold mb-1">Mesajlar</h4>
+                <small class="text-muted">Sisteme gelen kullanıcı mesajları</small>
+            </div>
+
+            <div class="text-end">
+                <div>
+                    <span class="badge bg-danger me-2">
+                        Okunmadı: @unreadCount
+                    </span>
+                    <span class="badge bg-success">
+                        Okundu: @readCount
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-warning rounded-3">
+                Henüz mesaj bulunmuyor.
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table id="order-listing" class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Gönderen</th>
+                            <th>Konu</th>
+                            <th>Mesaj</th>
+                            <th>Durum</th>
+                            <th>Tarih</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            count++;
+                            var statusBadge = x.IsRead
+                            ? "bg-success-subtle text-success"
+                            : "bg-danger-subtle text-danger";
+
+                            var statusText = x.IsRead ? "Okundu" : "Okunmadı";
+
+                            <tr class="@(x.IsRead ? "" : "table-warning")">
+                                <td class="fw-bold text-muted">@count</td>
+
+                                <td>
+                                    <i class="bi bi-person-circle text-primary me-2"></i>
+                                    <span class="fw-semibold">@x.NameSurname</span>
+                                </td>
+
+                                <td class="fw-semibold">
+                                    @x.Title
+                                </td>
+
+                                <td style="max-width: 250px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                                    @x.Detail
+                                </td>
+
+                                <td>
+                                    <span class="badge @statusBadge px-3 py-2 rounded-pill">
+                                        @statusText
+                                    </span>
+                                </td>
+
+                                <td class="text-muted">
+                                    @x.SendDate.ToString("dd.MM.yyyy HH:mm")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+
+    </div>
+</div>

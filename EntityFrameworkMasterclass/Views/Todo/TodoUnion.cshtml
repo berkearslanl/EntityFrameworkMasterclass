@@ -1,0 +1,78 @@
+﻿@model List<Todo>
+@{
+    ViewData["Title"] = "TodoUnion";
+    Layout = "~/Views/Layout/Index.cshtml";
+    int count = 0;
+}
+
+<div class="container mt-4">
+
+    <!-- Başlık -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold mb-0">
+            <i class="bi bi-list-check text-primary me-2"></i>
+            Yapılacaklar (Tekrarsız Liste - Union)
+        </h3>
+        <span class="badge bg-secondary">
+            Toplam: @Model.Count
+        </span>
+    </div>
+
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Açıklama</th>
+                            <th>Öncelik</th>
+                            <th>Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            count++;
+
+                            string priorityClass = x.Priority switch
+                            {
+                                "Yüksek" => "badge bg-danger",
+                                "Orta" => "badge bg-warning text-dark",
+                                "Düşük" => "badge bg-success",
+                                _ => "badge bg-secondary"
+                            };
+
+                            string statusClass = x.Status == true
+                            ? "badge bg-success-subtle text-success"
+                            : "badge bg-info-subtle text-info";
+
+                            <tr>
+                                <td class="fw-bold text-muted">@count</td>
+
+                                <td>
+                                    <i class="bi bi-check2-square text-primary me-2"></i>
+                                    @x.Description
+                                </td>
+
+                                <td>
+                                    <span class="@priorityClass px-3 py-2">
+                                        @x.Priority
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span class="@statusClass px-3 py-2">
+                                        @x.Status
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

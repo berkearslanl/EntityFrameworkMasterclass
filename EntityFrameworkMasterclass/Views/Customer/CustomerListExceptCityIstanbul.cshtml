@@ -1,0 +1,86 @@
+﻿@model List<Customer>
+@{
+    ViewData["Title"] = "CustomerListExceptCityIstanbul";
+    Layout = "~/Views/Layout/Index.cshtml";
+    int count = 0;
+    var totalBalance = Model.Sum(x => x.CustomerBalance);
+}
+
+<div class="card shadow-sm border-0 rounded-4">
+    <div class="card-body">
+
+        <!-- Başlık ve Özet Alanı -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h4 class="fw-bold mb-1">
+                    İstanbul Hariç Müşteri Listesi
+                </h4>
+                <small class="text-muted">
+                    Except metodu ile filtrelenmiş müşteri verileri
+                </small>
+            </div>
+
+            <div class="text-end">
+                <div class="fw-semibold">Toplam Müşteri</div>
+                <span class="badge bg-dark text-white fs-6">@Model.Count</span>
+                <div class="mt-2 fw-semibold">Toplam Bakiye</div>
+                <span class="badge bg-primary text-white fs-6">
+                    @totalBalance.ToString("N2") TL
+                </span>
+            </div>
+        </div>
+
+        @if (!Model.Any())
+        {
+            <div class="alert alert-warning rounded-3">
+                Listelenecek müşteri bulunamadı.
+            </div>
+        }
+        else
+        {
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Müşteri</th>
+                            <th>Şehir</th>
+                            <th class="text-end">Bakiye</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            count++;
+                            var balanceBadge = x.CustomerBalance >= 0
+                            ? "bg-success-subtle text-success"
+                            : "bg-danger-subtle text-danger";
+
+                            <tr>
+                                <td class="fw-bold text-muted">@count</td>
+
+                                <td>
+                                    <i class="bi bi-person-circle text-primary me-2"></i>
+                                    <span class="fw-semibold">
+                                        @x.CustomerName @x.CustomerSurname
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <i class="bi bi-geo-alt-fill text-danger me-1"></i>
+                                    @x.CustomerCity
+                                </td>
+
+                                <td class="text-end">
+                                    <span class="badge @balanceBadge px-3 py-2 rounded-pill">
+                                        @x.CustomerBalance.ToString("N2") TL
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        }
+    </div>
+</div>

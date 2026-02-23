@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "Skip4ProductList";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">İlk 4 Ürünü Atla - Sonraki 10 Ürünü Getir</h4>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ürün Adı</th>
+                                <th>Kategori Adı</th>
+                                <th>Ürün Fiyatı</th>
+                                <th>Stok Sayısı</th>
+                                <th>Güncelle</th>
+                                <th>Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var x in Model)
+                            {
+                                <tr>
+                                    <th>@x.ProductId</th>
+                                    <td>@x.ProductName</td>
+                                    <td>@x.Category.CategoryName</td>
+                                    <td>@x.ProductPrice.ToString("0.00") <span style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">₺</span></td>
+                                    <td>@x.ProductStock</td>
+                                    <td><a href="/Product/UpdateProduct/@x.ProductId/" class="btn btn-outline-primary">Güncelle</a></td>
+                                    <td><a href="/Product/DeleteProduct/@x.ProductId/" class="btn btn-outline-danger">Sil</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/Product/CreateProduct/" class="btn btn-outline-dark">Yeni Ürün Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

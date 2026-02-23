@@ -1,0 +1,98 @@
+﻿@model List<Todo>
+@{
+    ViewData["Title"] = "TodoConcat";
+    Layout = "~/Views/Layout/Index.cshtml";
+    int count = 0;
+
+    var completed = Model.Count(x => x.Status == true);
+    var pending = Model.Count(x => x.Status != true);
+}
+
+<div class="container mt-4">
+
+    <!-- Başlık + Özet -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold mb-0">
+            <i class="bi bi-link-45deg text-primary me-2"></i>
+            Yapılacaklar (Concat - Birleştirilmiş Liste)
+        </h3>
+        <span class="badge bg-dark text-white">
+            Toplam: @Model.Count
+        </span>
+    </div>
+
+    <!-- Mini İstatistik Alanı -->
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 rounded-3 text-center p-3">
+                <h6 class="text-muted">Tamamlanan</h6>
+                <h4 class="text-success fw-bold">@completed</h4>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow-sm border-0 rounded-3 text-center p-3">
+                <h6 class="text-muted">Bekleyen</h6>
+                <h4 class="text-warning fw-bold">@pending</h4>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tablo -->
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>#</th>
+                            <th>Açıklama</th>
+                            <th>Öncelik</th>
+                            <th>Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            count++;
+
+                            string priorityClass = x.Priority switch
+                            {
+                                "Yüksek" => "badge bg-danger",
+                                "Orta" => "badge bg-warning text-dark",
+                                "Düşük" => "badge bg-success",
+                                _ => "badge bg-secondary"
+                            };
+
+                            bool isDone = x.Status == true;
+
+                            <tr class="@(isDone ? "table-success" : "")">
+                                <td class="fw-bold text-muted">@count</td>
+
+                                <td style="text-decoration:@(isDone ? "line-through" : "none")">
+                                    <i class="bi bi-check2-square me-2 text-primary"></i>
+                                    @x.Description
+                                </td>
+
+                                <td>
+                                    <span class="@priorityClass px-3 py-2">
+                                        @x.Priority
+                                    </span>
+                                </td>
+
+                                <td>
+                                    <span class="badge @(isDone ? "bg-success" : "bg-info") px-3 py-2">
+                                        @x.Status
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

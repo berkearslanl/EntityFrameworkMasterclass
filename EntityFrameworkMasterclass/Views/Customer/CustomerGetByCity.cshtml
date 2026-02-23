@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "CustomerGetByCity";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+<div class="container mt-4">
+
+    <!-- Başlık -->
+    <div class="text-center mb-4">
+        <h3 class="fw-bold">
+            <i class="bi bi-geo-alt-fill text-primary me-2"></i>
+            Şehirde Müşteri Var mı?
+        </h3>
+        <p class="text-muted">Belirli bir şehirde kayıtlı müşteri olup olmadığını kontrol edin.</p>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-7">
+
+            <div class="card shadow-lg border-0 rounded-4">
+                <div class="card-body p-5">
+
+                    <form asp-action="CustomerGetByCity" method="get">
+
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">Şehir Adı</label>
+
+                            <div class="input-group">
+                                <span class="input-group-text bg-light">
+                                    <i class="bi bi-buildings text-primary"></i>
+                                </span>
+
+                                <input name="city"
+                                       class="form-control form-control-lg"
+                                       placeholder="Örn: İstanbul"
+                                       autocomplete="off" />
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+                                <i class="bi bi-search me-1"></i> Kontrol Et
+                            </button>
+                        </div>
+
+                    </form>
+
+                    @if (ViewBag.message != null)
+                    {
+                        <div class="mt-4">
+                            <div class="alert alert-info rounded-3 text-center">
+                                @ViewBag.message
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

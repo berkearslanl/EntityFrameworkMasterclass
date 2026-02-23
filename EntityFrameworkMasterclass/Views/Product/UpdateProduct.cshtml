@@ -1,0 +1,49 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "UpdateProduct";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="page-header mb-4">
+            <h3 class="page-title">Ürün Ekle</h3>
+        </div>
+
+        <div class="card shadow-sm rounded-4">
+            <div class="card-body p-4">
+
+                <form method="post">
+                    <input type="hidden" asp-for="ProductId" />
+                    <div class="mb-3">
+                        <label asp-for="ProductName" class="form-label fw-semibold">Ürün Adı</label>
+                        <input asp-for="ProductName" class="form-control form-control-lg rounded-3" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="CategoryId" class="form-label fw-semibold">Kategori Adı</label>
+                        <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.categories" required>
+                            <option value="" disabled selected>Bir kategori seçin...</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ProductPrice" class="form-label fw-semibold">Ürün Fiyatı</label>
+                        <input asp-for="ProductPrice" class="form-control form-control-lg rounded-3" />
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="ProductStock" class="form-label fw-semibold">Stok Sayısı</label>
+                        <input asp-for="ProductStock" class="form-control form-control-lg rounded-3" />
+                    </div>
+                    <div class="d-flex justify-content-end gap-2">
+                        <a href="/Product/ProductList" class="btn btn-light rounded-3 px-4">Vazgeç</a>
+                        <button type="submit" class="btn btn-primary rounded-3 px-4">
+                            Kaydet
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+

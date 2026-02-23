@@ -1,0 +1,82 @@
+﻿@model List<Order>
+@{
+    string statusColor = "";
+}
+<div class="col-md-8 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">
+                <i class="fas fa-table"></i>
+                Son Siparişler
+            </h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Müşteri</th>
+                            <th>Ürün</th>
+                            <th>Adet</th>
+                            <th>Durum</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            
+                            <tr>
+                                <td class="font-weight-bold">
+                                    @x.Customer.CustomerName @x.Customer.CustomerSurname
+                                </td>
+                                <td class="text-muted">
+                                    @x.Product.ProductName
+                                </td>
+                                <td>
+                                    @x.OrderCount
+                                </td>
+                                @if (x.Status == "Teslim Edildi")
+                                {
+                                    statusColor = "badge badge-success badge-pill";
+                                }
+                                else if (x.Status == "Sipariş Alındı")
+                                {
+                                    statusColor = "badge badge-warning badge-pill";
+                                }
+                                else if (x.Status == "İptal Edildi")
+                                {
+                                    statusColor = "badge badge-danger badge-pill";
+                                }
+                                else if (x.Status == "Taşıma Durumunda")
+                                {
+                                    statusColor = "badge badge-info badge-pill";
+                                }
+                                else if (x.Status == "Ödeme Bekleniyor")
+                                {
+                                    statusColor = "badge badge-primary badge-pill";
+                                }
+                                else
+                                {
+                                    statusColor = "badge badge-secondary text-black badge-pill";
+                                }
+                                <td>
+                                    <label class="@statusColor">@x.Status</label>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-4 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">
+                <i class="fas fa-calendar-alt"></i>
+                Calendar
+            </h4>
+            <div id="inline-datepicker-example" class="datepicker"></div>
+        </div>
+    </div>
+</div>

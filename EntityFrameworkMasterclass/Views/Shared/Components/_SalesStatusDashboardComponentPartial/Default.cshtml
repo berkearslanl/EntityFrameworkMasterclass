@@ -1,0 +1,60 @@
+﻿@model List<CustomerCityChartViewModel>
+@using Newtonsoft.Json
+
+@{
+    var cityLabels = Model.Select(x => x.City).ToList();
+    var cityCounts = Model.Select(x => x.Count).ToList();
+}
+
+<div class="col-md-4 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">
+                <i class="fas fa-map-marker-alt"></i> Şehirlere Göre Müşteri Dağılımı
+            </h4>
+            <canvas id="customer-city-chart" width="600" height="600"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        const labels = @Html.Raw(JsonConvert.SerializeObject(cityLabels));
+        const counts = @Html.Raw(JsonConvert.SerializeObject(cityCounts));
+
+        // Dinamik renk üretme
+        const generateColors = (count) => {
+            const colors = [];
+            for (let i = 0; i < count; i++) {
+                const hue = Math.floor((360 / count) * i);
+                colors.push(`hsl(${hue}, 70%, 60%)`);
+            }
+            return colors;
+        };
+
+        const ctx = document.getElementById('customer-city-chart').getContext('2d');
+
+        const chart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Şehir Başına Müşteri Sayısı',
+                    data: counts,
+                    backgroundColor: generateColors(labels.length),
+                    borderColor: '#fff',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    });
+</script>

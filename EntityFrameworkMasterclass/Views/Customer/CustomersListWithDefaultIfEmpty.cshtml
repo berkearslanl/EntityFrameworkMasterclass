@@ -1,0 +1,85 @@
+﻿@model List<Customer>
+@{
+    ViewData["Title"] = "CustomersListWithDefaultIfEmpty";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+<div class="container mt-4">
+
+    <!-- Üst Alan -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold mb-0">
+            <i class="bi bi-people-fill text-primary me-2"></i>
+            Müşteri Listesi (DefaultIfEmpty)
+        </h3>
+
+        <a href="/Customer/CreateCustomer/" class="btn btn-primary shadow-sm">
+            <i class="bi bi-person-plus-fill me-1"></i> Yeni Müşteri
+        </a>
+    </div>
+
+    <!-- Kart -->
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body">
+
+            <div class="table-responsive">
+                <table id="order-listing" class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Ad Soyad</th>
+                            <th>Konum</th>
+                            <th>Bakiye</th>
+                            <th class="text-center">İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            <tr>
+                                <td class="fw-bold text-muted">#@x.CustomerId</td>
+
+                                <td>
+                                    <i class="bi bi-person-circle text-primary me-2"></i>
+                                    @x.CustomerName @x.CustomerSurname
+                                </td>
+
+                                <td>
+                                    <span class="text-muted">
+                                        <i class="bi bi-geo-alt-fill me-1 text-danger"></i>
+                                        @x.CustomerCity / @x.CustomerDistrict
+                                    </span>
+                                </td>
+
+                                <td>
+                                    @{
+                                        var balanceClass = x.CustomerBalance >= 0 ? "text-success" : "text-danger";
+                                    }
+                                    <span class="fw-semibold @balanceClass">
+                                        @x.CustomerBalance.ToString("N2") <span style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">₺</span>
+                                    </span>
+                                </td>
+
+                                <td class="text-center">
+                                    <a href="/Customer/UpdateCustomer/@x.CustomerId/"
+                                       class="btn btn-sm btn-outline-primary me-2">
+                                        Güncelle<i class="bi bi-pencil-square"></i>
+                                    </a>
+
+                                    <a href="/Customer/DeleteCustomer/@x.CustomerId/"
+                                       class="btn btn-sm btn-outline-danger"
+                                       onclick="return confirm('Bu müşteriyi silmek istediğinize emin misiniz?');">
+                                        Sil<i class="bi bi-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

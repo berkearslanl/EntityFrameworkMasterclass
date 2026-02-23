@@ -1,0 +1,60 @@
+﻿@model List<Order>
+@{
+    ViewData["Title"] = "OrderListFilter";
+    Layout = "~/Views/Layout/Index.cshtml";
+}
+
+<div class="card">
+    <div class="card-body">
+        <h4 class="card-title">Sipariş Listesi</h4>
+        <div class="row">
+            <div class="col-12">
+                <div class="table-responsive">
+                    <form asp-action="OrderListFilter" method="get">
+                        <div class="row">
+                            <div class="col-md-9">
+                                <input type="text" name="text" placeholder="Veri giriniz.." class="form-control" />
+                            </div>
+                            <div class="col-md-3">
+                                <button type="submit" class="btn btn-outline-primary mt-2">Ara</button>
+                            </div>
+                        </div>
+                    </form>
+                    <br />
+                    <table  class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Ürün Adı</th>
+                                <th>Müşteri</th>
+                                <th>Sipariş Adet</th>
+                                <th>Birim Fiyat</th>
+                                <th>Toplam Fiyat</th>
+                                <th>Durum</th>
+                                <th>Güncelle</th>
+                                <th>Sil</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var x in Model)
+                            {
+                                <tr>
+                                    <th>@x.OrderId</th>
+                                    <td>@x.Product.ProductName</td>
+                                    <td>@x.Customer.CustomerName @x.Customer.CustomerSurname</td>
+                                    <td>@x.OrderCount</td>
+                                    <td>@x.UnitPrice TL</td>
+                                    <td>@x.TotalPrice TL</td>
+                                    <td>@x.Status</td>
+                                    <td><a href="/Order/UpdateOrder/@x.OrderId/" class="btn btn-outline-primary">Güncelle</a></td>
+                                    <td><a href="/Order/DeleteOrder/@x.OrderId/" class="btn btn-outline-danger">Sil</a></td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <a href="/Order/CreateOrder/" class="btn btn-outline-dark">Yeni Kategori Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
